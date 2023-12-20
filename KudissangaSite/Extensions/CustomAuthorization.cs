@@ -5,7 +5,7 @@ using System.Security.Claims;
 namespace KudissangaSite.Extensions;
 
 public class CustomAuthorization
-{
+{ 
     public static bool ValidarClaimsUsuario(HttpContext context, string claimName, string claimValue)
     {
         return context.User.Identity.IsAuthenticated &&
