@@ -1,0 +1,35 @@
+﻿@using KudissangaSite.Extensions;
+@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<KudissangaSite.Models.Suite>
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    if(UserManager.GetUserId(User) is not null)
+        UsuarioLogado.IdUsuarioSessao = Guid.Parse(UserManager.GetUserId(User));
+
+    ViewData["Title"] = "Hotel Kudissanga";
+}
+
+<h1 style="padding-top: 20px">@ViewData["Title"]</h1>
+<br/>
+<br />
+<div style="display:flex;justify-content:space-between">
+    <img style="justify-content:center;width:600px;height:500px;border-radius:7px" src="~/imagens/IMG-20230719-WA0027.jpg" />
+    <img style="justify-content:center;width:600px;height:500px;border-radius:7px" src="~/imagens/IMG-20230719-WA0028.jpg" />
+</div>
+
+<p class="h3">
+    HOTEL ideal para para passar o tempo, aproveitar uma estadia nas férias
+</p>
+
+<p class="h3">
+    Contactos: 936567947 / 926473827
+</p>
+<p class="h3">
+    Endereço eletrónico: kudissanga@gmail.com
+</p>
+<p class="h3">
+    Endereço IBAN: AO6 006000089654678877
+</p>

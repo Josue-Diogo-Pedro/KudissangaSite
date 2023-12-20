@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<KudissangaSite.Models.Suite>
+
+@{
+    ViewData["Title"] = "Lista de Suítes";
+}
+
+<h2 style="padding-top: 20px">@ViewData["Title"]</h2>
+<hr/>
+<p>
+    <a class="btn btn-info" asp-action="Create">Nova Suíte</a>
+</p>
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoDiario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidade)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/imagens/@item.Imagem" alt="@item.Imagem" style="width: 150px; height: 100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecoDiario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacidade)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

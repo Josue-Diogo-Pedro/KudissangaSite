@@ -1,0 +1,53 @@
+﻿@using KudissangaSite.Extensions;
+@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<KudissangaSite.Models.Suite>
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    if(UserManager.GetUserId(User) is not null)
+        UsuarioLogado.IdUsuarioSessao = Guid.Parse(UserManager.GetUserId(User));
+
+    ViewData["Title"] = "Suítes Disponíveis";
+}
+
+<partial name="_Carousel" />
+
+<h2 style="padding-top: 20px">@ViewData["Title"]</h2>
+
+<div style="display:flex;justify-content:space-between">
+    
+</div>
+
+<table class="table table-borderless">
+    <thead class="">
+        <tr>
+            <th align="center">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.Disponivel == true))
+        {
+            <tr>
+                <td align="center">
+                    <div class="card mb-3" style="max-width: 700px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img style="width:700px;height:200px;" src="~/imagens/@item.Imagem" class="img-fluid rounded-start" alt="@item.Imagem">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.PrecoDiario kz por noite</h5>
+                                    <p class="card-text">@item.Descricao</p>
+                                    <a class="btn btn-primary" asp-controller="Reservas" asp-action="Create" asp-route-id="@item.Id">Solicitar reserva</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,79 @@
+﻿@model KudissangaSite.Models.Reserva
+
+@{
+    ViewData["Title"] = "Editar Reserva";
+}
+
+<h2 style="padding-top:20px">@ViewData["Title"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="Edit">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mt-2">
+                <label asp-for="DiasEstadia" class="control-label"></label>
+                <input asp-for="DiasEstadia" class="form-control" />
+                <span asp-validation-for="DiasEstadia" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="ValorPago" class="control-label"></label>
+                <input asp-for="ValorPago" class="form-control" />
+                <span asp-validation-for="ValorPago" class="text-danger"></span>
+            </div>
+
+            <label asp-for="Troco" class="control-label mt-2"></label>
+
+            <div class="form-group mt-2">
+                <label asp-for="TipoPagamento"></label>
+                <div>
+                    <input type="radio" value="1" asp-for="TipoPagamento" checked="@(Model.TipoPagamento == KudissangaSite.Models.ValueObjects.TipoPagamento.Transferencia)" /> Transferencia <br />
+                    <input type="radio" value="2" asp-for="TipoPagamento" checked="@(Model.TipoPagamento == KudissangaSite.Models.ValueObjects.TipoPagamento.Vista)" /> Pronto Pagamento <br />
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="ComprovativoUpload" class="control-label"></label>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ComprovativoUpload" asp-for="ComprovativoUpload" />
+                    <label data-browse="Procurar" style="width: 400px;" class="custom-file-label" for="ComprovativoUpload"></label>
+                </div>
+
+                <span asp-validation-for="ComprovativoUpload" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check mt-1">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Aprovada" /> @Html.DisplayNameFor(model => model.Aprovada)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $("#ComprovativoUpload").change(function () {
+            $("#img_nome").text(this.files[0].name);
+            $("#img_nome")[0].style.display = 'block';
+        });
+
+        $("#ComprovativoUpload").attr("data-val", "true");
+                //$("#ImagemUpload").attr("data-val-required", "Preencha o campo Imagem");
+    </script>
+}

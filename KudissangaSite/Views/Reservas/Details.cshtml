@@ -1,0 +1,75 @@
+﻿@using KudissangaSite.Extensions;
+@model KudissangaSite.Models.Reserva
+
+@{
+    ViewData["Title"] = "Reserva " + Model.Numero;
+}
+
+<h2 style="padding-top:20px">@ViewData["Title"]</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiasEstadia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiasEstadia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValorPago)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValorPago)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Troco)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Troco)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoPagamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TipoPagamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataReserva)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataReserva)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Comprovativo)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/imagens/@Model.Comprovativo" alt="@Model.Comprovativo" style="width: 500px; height: 500px" />
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Aprovada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Aprovada)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if(this.IfClaim("Gerente", "EditarReserva")){
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a>
+    }
+    <a class="btn btn-info" asp-controller="Home" asp-action="Index">Voltar</a>
+</div>

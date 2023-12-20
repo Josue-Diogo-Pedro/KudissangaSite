@@ -1,0 +1,42 @@
+﻿@model KudissangaSite.Models.Funcionario
+
+@{
+    ViewData["Title"] = "Novo Funcionário";
+}
+
+<h2 style="padding-top:20px">@ViewData["Title"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+            <partial name="_PessoaFunc" />
+
+            <div class="form-group mt-1">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Funcao" class="control-label">Função</label><br />
+                <input type="radio" value="1" asp-for="Funcao" checked />Gerente<br />
+                <input type="radio" value="2" asp-for="Funcao" />Recepcionista<br />
+                <span asp-validation-for="Funcao" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

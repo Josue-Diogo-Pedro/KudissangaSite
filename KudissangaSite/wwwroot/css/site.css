@@ -1,0 +1,42 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #ff6a00;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+input,
+select,
+file,
+textarea {
+    max-width: 400px;
+}
+
+/*258cfb*/
+
+.tela {
+    width: 100%;
+    min-height: 460px;
+    background-color: #ff6a00;
+    /*width: 100%;
+    min-height: 220px;
+    background-color: #CFBEA5;
+    position: relative;
+    z-index: 998;*/
+}

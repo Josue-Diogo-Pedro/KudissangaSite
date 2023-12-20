@@ -1,0 +1,26 @@
+﻿@using KudissangaSite.Extensions;
+@model KudissangaSite.Models.Cliente
+
+<div class="form-group">
+    <label asp-for="Pessoa.Nome" class="control-label"></label>
+    <input asp-for="Pessoa.Nome" class="form-control" />
+    <span asp-validation-for="Pessoa.Nome" class="text-danger"></span>
+</div>
+<div class="form-group mt-1">
+    <label asp-for="Pessoa.Genero" class="control-label"></label><br/>
+    <input type="radio" value="1" asp-for="Pessoa.Genero" checked />Masculino<br />
+    <input type="radio" value="2" asp-for="Pessoa.Genero" />Femenino<br />
+    <span asp-validation-for="Pessoa.Genero" class="text-danger"></span>
+</div>
+<div class="form-group mt-1">
+    <label asp-for="Pessoa.DataNascimento" class="control-label"></label>
+    <input asp-for="Pessoa.DataNascimento" class="form-control" />
+    <span asp-validation-for="Pessoa.DataNascimento" class="text-danger"></span>
+</div>
+<div class="form-group mt-1">
+    <label asp-for="Pessoa.Telefone" class="control-label"></label>
+    <input asp-for="Pessoa.Telefone" class="form-control" />
+    <span asp-validation-for="Pessoa.Telefone" class="text-danger"></span>
+</div>
+
+

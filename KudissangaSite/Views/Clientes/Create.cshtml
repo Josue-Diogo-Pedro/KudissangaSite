@@ -1,0 +1,33 @@
+﻿@using KudissangaSite.Extensions;
+@using Microsoft.AspNetCore.Identity;
+@model KudissangaSite.Models.Cliente
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Novo Cliente";
+}
+
+<h3 style="padding-top: 25px">@ViewData["Title"]</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <partial name="_PessoaCli" />
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

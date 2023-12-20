@@ -1,0 +1,65 @@
+﻿@using KudissangaSite.Areas.Identity.Data;
+@using KudissangaSite.Extensions;
+@model IEnumerable<KudissangaSite.Models.Funcionario>
+@inject KudissangaSiteContext _context
+
+
+@{
+    ViewData["Title"] = "Lista de Funcionários";
+    var usuario = _context.Funcionarios.FirstOrDefault(p => p.Id == UsuarioLogado.IdUsuarioSessao);
+}
+
+<h2 style="padding-top:20px">@ViewData["Title"]</h2>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Novo Funcionário</a>
+</p>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pessoa.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pessoa.Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pessoa.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pessoa.BI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pessoa.Telefone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pessoa.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pessoa.Genero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pessoa.DataNascimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pessoa.BI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pessoa.Telefone)
+                </td>
+                <td class="align-content-end">
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

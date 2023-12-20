@@ -1,0 +1,76 @@
+﻿@model KudissangaSite.Models.Suite
+
+@{
+    ViewData["Title"] = "Editar Suíte " + Model.Numero;
+}
+
+<h3 style="padding-top: 20px">@ViewData["Title"]</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form enctype="multipart/form-data" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <textarea cols="40" rows="5" asp-for="Descricao" class="form-control"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecoDiario" class="control-label"></label>
+                <input asp-for="PrecoDiario" class="form-control" />
+                <span asp-validation-for="PrecoDiario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacidade" class="control-label"></label>
+                <input asp-for="Capacidade" class="form-control" />
+                <span asp-validation-for="Capacidade" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Imagem Atual</label><br/>
+                <img src="~/imagens/@Model.Imagem" alt="@Model.Imagem" style="width: 70px; height: 100px" />
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="ImagemUpload" class="control-label"></label>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ImagemUpload" asp-for="ImagemUpload" />
+                    <label data-browse="Procurar" style="width: 400px;" class="custom-file-label" for="ImagemUpload"></label>
+                </div>
+
+                <span asp-validation-for="ImagemUpload" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DataCadastro" class="control-label"></label>
+                <input asp-for="DataCadastro" class="form-control" />
+                <span asp-validation-for="DataCadastro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Disponivel" /> @Html.DisplayNameFor(model => model.Disponivel)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

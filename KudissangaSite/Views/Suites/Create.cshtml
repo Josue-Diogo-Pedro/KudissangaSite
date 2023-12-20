@@ -1,0 +1,72 @@
+﻿@model KudissangaSite.Models.Suite
+
+@{
+    ViewData["Title"] = "Nova Suíte";
+}
+
+<h3 style="padding-top: 25px">@ViewData["Title"]</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form enctype="multipart/form-data" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <label asp-for="Descricao" class="control-label"></label>
+                <textarea cols="40" rows="5" asp-for="Descricao" class="form-control"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <label asp-for="PrecoDiario" class="control-label"></label>
+                <input asp-for="PrecoDiario" class="form-control" />
+                <span asp-validation-for="PrecoDiario" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <label asp-for="Capacidade" class="control-label"></label>
+                <input asp-for="Capacidade" class="form-control" />
+                <span asp-validation-for="Capacidade" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="ImagemUpload" class="control-label"></label>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ImagemUpload" asp-for="ImagemUpload" />
+                    <label data-browse="Procurar" style="width: 400px;" class="custom-file-label" for="ImagemUpload"></label>
+                </div>
+
+                <span asp-validation-for="ImagemUpload" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Disponivel" /> @Html.DisplayNameFor(model => model.Disponivel)
+                </label>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $("#ImagemUpload").change(function () {
+            $("#img_nome").text(this.files[0].name);
+            $("#img_nome")[0].style.display = 'block';
+        });
+
+        $("#ImagemUpload").attr("data-val", "true");
+        $("#ImagemUpload").attr("data-val-required", "Preencha o campo Imagem");
+    </script>
+}

@@ -1,0 +1,82 @@
+﻿@using KudissangaSite.Extensions;
+@model IEnumerable<KudissangaSite.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Lista de Reservas";
+}
+
+<h2 style="padding-top:20px">@ViewData["Title"]</h2>
+@if(this.IfClaim("Usuario", "ListarReserva"))
+{
+    <p>
+        <a class="btn btn-info" asp-action="Solicitacoes">Ver lista de todas solicitações</a>
+        <a class="btn btn-warning" asp-controller="Reservas" asp-action="Relatorio">Gerar Relatório</a>
+    </p>
+}
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Troco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aprovada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeFuncionario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCliente)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Troco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aprovada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Funcionario.Pessoa.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Pessoa.Nome)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> 
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

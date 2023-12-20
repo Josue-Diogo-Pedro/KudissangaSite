@@ -1,0 +1,61 @@
+﻿@model KudissangaSite.Models.Cliente
+
+@{
+    ViewData["Title"] = "Editar dados";
+}
+
+<h2 style="padding-top: 20px">@ViewData["Title"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mt-1">
+                <label asp-for="Pessoa.Nome" class="control-label"></label>
+                <input asp-for="Pessoa.Nome" class="form-control" />
+                <span asp-validation-for="Pessoa.Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="Pessoa.Genero"></label>
+                <div>
+                    <input type="radio" value="1" asp-for="Pessoa.Genero" checked="@(Model.Pessoa.Genero == KudissangaSite.Models.ValueObjects.Genero.Masculino)" /> Masculino <br />
+                    <input type="radio" value="2" asp-for="Pessoa.Genero" checked="@(Model.Pessoa.Genero == KudissangaSite.Models.ValueObjects.Genero.Femenino)" /> Femenino <br />
+                </div>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="Pessoa.DataNascimento" class="control-label"></label>
+                <input asp-for="Pessoa.DataNascimento" class="form-control" />
+                <span asp-validation-for="Pessoa.DataNascimento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="Pessoa.Telefone" class="control-label"></label>
+                <input asp-for="Pessoa.Telefone" class="form-control" />
+                <span asp-validation-for="Pessoa.Telefone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="Pessoa.Mordada" class="control-label"></label>
+                <textarea asp-for="Pessoa.Mordada" class="form-control"></textarea>
+                <span asp-validation-for="Pessoa.Mordada" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
